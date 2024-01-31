@@ -8,7 +8,7 @@ export default function Home() {
       </h1>
 
       <h2>
-        Developers:
+        Developers
       </h2>
     </main>
   );
