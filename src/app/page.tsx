@@ -1,7 +1,7 @@
 import Image from "next/image";
 import db from "./db";
 
-export async function getEvents() {
+async function getEvents() {
   const events = await db.client.collection("events").getFullList({
     sort: "-created",
   })
