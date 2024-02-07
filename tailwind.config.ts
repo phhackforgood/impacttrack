@@ -7,19 +7,20 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      "a1": "#FF3A29",
-      "a2": "#02A0FC",
-      "a3": "#4339F2",
-      "a4": "#34B53A",
-      "a5": "#FFB200",
-      "l1": "#FFE5D3",
-      "l2": "#CCF8FE",
-      "l3": "DAD7FE",
-      "l4": "E2FBD7",
-      "l5": "FFF5CC",
-    },
     extend: {
+      colors: {
+        "a1": "#FF3A29",
+        "a2": "#02A0FC",
+        "a3": "#4339F2",
+        "a4": "#34B53A",
+        "a5": "#FFB200",
+        "l1": "#FFE5D3",
+        "l2": "#CCF8FE",
+        "l3": "DAD7FE",
+        "l4": "E2FBD7",
+        "l5": "FFF5CC",
+        "customGrey": "F8F8F8",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
