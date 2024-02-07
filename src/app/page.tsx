@@ -1,15 +1,8 @@
 import Image from "next/image";
 import db from "./db";
 
-async function getEvents() {
-  const events = await db.client.collection("events").getFullList({
-    sort: "-created",
-  })
-  return events;
-}
-
 export default async function Home() {
-  const events = await getEvents();
+  const events = await db.getEvents();
   console.log(events);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-emerald-500">

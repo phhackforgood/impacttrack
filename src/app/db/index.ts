@@ -9,6 +9,13 @@ export class DatabaseClient {
         this.client = new PocketBase(POCKET_BASE_URL);
         this.client.autoCancellation(false);
     }
+
+    async getEvents() {
+        const events = await this.client.collection("events").getFullList({
+            sort: "-created",
+        })
+        return events;
+    }
 }
 
 export const db = new DatabaseClient();
