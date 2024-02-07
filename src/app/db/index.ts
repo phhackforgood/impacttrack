@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const POCKET_BASE_URL = 'https://impact-track.pockethost.io/'
+const POCKET_BASE_URL = process.env.POCKET_BASE_URL;
 
 export class DatabaseClient {
     client: PocketBase;
