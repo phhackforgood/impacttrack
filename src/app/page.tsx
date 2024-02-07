@@ -1,5 +1,5 @@
 import Image from "next/image";
-import db from "./db";
+import db from "../db";
 import EventCard from "./components/EventCard";
 
 export default async function Home() {
