@@ -1,7 +1,7 @@
 import db from "@/db"; 
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { User } from "@/types";
+import { User, Event } from "@/types";
 
 
 
@@ -9,11 +9,13 @@ export async function POST(request: Request) {
     try {
         const cookieStore = cookies();
         const user: User | false = await db.getUser(cookieStore); 
-        const { text, hours, date, event, img } = await request.json();
+        const { text, hours, date, eventName, image } = await request.json();
+        const event  = await db.getEventbyTitle(eventName);
+        const eventId = event.id;
         if (!user) {
             throw new Error("Not authenticated");
         } else {
-            const result = await db.submitForm(text, hours, date, event, img, user.id);
+            const result = await db.submitForm(text, hours, date, eventId, image, user.id);
             return NextResponse.json(result); 
         }  
     } catch (err: any) { 
