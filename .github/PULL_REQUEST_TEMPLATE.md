@@ -12,5 +12,3 @@
 - [ ] I have added documentation to all relevant methods.
 - [ ] I have updated the documentation:
     - README.md
-- [ ] I have ran `./gradlew test` or `./gradlew check` and all checks pass.
-- [ ] I have updated my project portfolio with what I have contributed.
