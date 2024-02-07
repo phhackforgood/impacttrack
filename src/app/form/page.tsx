@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'; 
 import React from 'react' 
  
-function formPage() { 
+function FormPage() { 
     const route = useRouter(); 
     const [text, setText] = React.useState<string>(''); 
     const [hours, setHours] = React.useState<number>(0); 
@@ -42,4 +42,4 @@ function formPage() {
     ) 
 } 
  
-export default formPage
+export default FormPage
