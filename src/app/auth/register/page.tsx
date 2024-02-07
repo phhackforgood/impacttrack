@@ -29,11 +29,7 @@ function RegisterPage() {
                 return; 
             }; 
             const data = await response.json(); 
-            if (data?.token) { 
-                route.push('/auth/login'); 
-            } else { 
-                setError('Failed to authenticate user 1'); 
-            } 
+            route.push('/auth/login');
         } catch (err) { 
             setEmail('Failed to authenticate user 2'); 
         } 
