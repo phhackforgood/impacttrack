@@ -68,7 +68,7 @@ function RegisterPage() {
                 </section> 
             </main > 
             <div className="max-w-lg mx-auto text-center mt-12 mb-6"> 
-                <p className="text-white">Don't have an account? <a href="/auth/register" className="font-bold hover:underline">Sign up</a>.</p> 
+                <p className="text-white">Dont have an account? <a href="/auth/register" className="font-bold hover:underline">Sign up</a>.</p> 
             </div> 
             <footer className="max-w-lg mx-auto flex justify-center text-white"> 
                 <a href="#" className="hover:underline">Contact</a> 
