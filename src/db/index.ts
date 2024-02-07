@@ -1,15 +1,18 @@
 import PocketBase from 'pocketbase';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
+import { User } from '@/types';
 
 const POCKET_BASE_URL = process.env.POCKET_BASE_URL;
 
 export class DatabaseClient {
+    
     client: PocketBase;
-
     constructor() {
         this.client = new PocketBase(POCKET_BASE_URL);
         this.client.autoCancellation(false);
     }
+
+    
 
     async authenticate(email: string, password: string) {
         try {
@@ -58,7 +61,7 @@ export class DatabaseClient {
         }
 
         this.client.authStore.loadFromCookie(cookie?.value || '');
-        return this.client.authStore.model;
+        return this.client.authStore.model as User;
     }
 
     async getEvents() {
@@ -66,6 +69,17 @@ export class DatabaseClient {
             sort: "-created", expand: "description",
         })
         return events;
+    }
+
+    async submitForm(text: string, hours: number, date: Date, event: string, img: File, userId: string) {
+        const result = await this.client.collection("forms").create({
+            text: text,
+            hours: hours,
+            date: date,
+            event: event,
+            image: img,
+        });
+        return result;
     }
 }
 
