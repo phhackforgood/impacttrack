@@ -21,6 +21,9 @@ const config: Config = {
         "l5": "FFF5CC",
         "customGrey": "F8F8F8",
       },
+      fontFamily: {
+        Dmsans: ['DM Sans', 'sans-serif'],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

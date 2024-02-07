@@ -12,7 +12,7 @@ export class DatabaseClient {
 
     async getEvents() {
         const events = await this.client.collection("events").getFullList({
-            sort: "-created",
+            sort: "-created", expand: "description",
         })
         return events;
     }
