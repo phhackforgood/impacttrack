@@ -14,7 +14,7 @@ const config: Config = {
         "a3": "#4339F2",
         "a4": "#34B53A",
         "a5": "#FFB200",
-        "l1": "#FFE 5D3",
+        "l1": "#FFE5D3",
         "l2": "#CCF8FE",
         "l3": "DAD7FE",
         "l4": "E2FBD7",
