@@ -1,22 +1,17 @@
 import Image from "next/image";
 import db from "./db";
+import EventCard from "./components/EventCard";
 
 export default async function Home() {
   const events = await db.getEvents();
   console.log(events);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-emerald-500">
-      <h1 className="text-4xl font-bold text-center">
-        ImpactTrack, a new way to track your volunteering impact
-      </h1>
-      {events?.map((event) => {
-        return <div key={event.id} className="flex flex-col items-center">
-          <h2 className="text-2xl font-bold">{event.title}</h2>
-        </div>
+    <main className="flex min-h-screen flex-col justify-between items-center px-24 py-32 bg-gray-100">
+      {events?.map((event, index) => {
+        return (
+          <EventCard key={index} title={event.title} description={event.description} />
+        );
       })}
-      <h2>
-        Developers
-      </h2>
     </main>
   );
 }
