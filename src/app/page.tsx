@@ -1,6 +1,7 @@
 import Image from "next/image";
 import db from "../db";
 import EventCard from "./components/EventCard";
+import Logout from "./components/Logout";
 
 export default async function Home() {
   const events = await db.getEvents();
@@ -12,8 +13,10 @@ export default async function Home() {
           <div key={index} className="mb-4">
             <EventCard title={event.title} description={event.description} />
           </div>
+          
         );
       })}
+      <Logout />
     </main>
   );
 }
