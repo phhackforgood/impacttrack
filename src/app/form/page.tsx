@@ -54,6 +54,7 @@ function FormPage() {
                     <div></div>
                     <label>
                         <input type="radio" className="form-radio"/>
+
                         <span className="ml-2 text-gray-700 text-sm">Volunteer</span>
                     </label>
                     <div></div>
@@ -66,6 +67,7 @@ function FormPage() {
                 <label className="block text-gray-700 text-sm font-semibold" >Event</label>
                 <div className="mb-8 pt-3 rounded bg-gray-100">
                     <select className="pt-3 bg-white rounded w-full text-gray-700 text-sm border-2 outline-gray-300 focus:outline-gray-400 transition duration-500 px-3 pb-3">
+
                         <option value="Ongoing Events">Ongoing Events</option>
                         <option value="Earth Oven">Earth Oven</option>
                         <option value="Wood Upcycling">Wood Upcycling</option>
@@ -80,13 +82,15 @@ function FormPage() {
 
                 <label className="block text-gray-700 text-sm font-semibold font-Dmsans" >Write Up</label>
                 <div className="mb-8 pt-3 rounded bg-gray-100">
+
                     <input type="string" className="pt-3 bg-white rounded w-full text-gray-700 border-2 outline-gray-300 focus:outline-gray-400 transition duration-500 px-3 pb-3"/>
                 </div>
 
+
                 <div className="flex justify-end">
-                    <a href="#" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Back</a>
+                    <a href="#" className="text-sm font-Dmsans text-purple-600 hover:text-purple-700 hover:underline pt-6 mb-4">Back</a>
                 </div>
-                <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-Dmsans font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
             </form>
         </section>
         </div>
