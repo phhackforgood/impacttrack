@@ -38,7 +38,7 @@ function FormPage() {
     }; 
     
     return (
-        <div className="flex flex-col justify-end items-center">
+        <div className="flex flex-col justify-between items-center bg-gray-100">
             <h1 className="text-4xl font-medium mx-auto items-center font-Dmsans mt-5" >Volunteer Form</h1>
 
             <section className="mt-10">
@@ -49,7 +49,7 @@ function FormPage() {
                 <div className="mb-8 pt-3 rounded bg-gray-100">
                     <label>
                         <input type="radio" name="role" className="form-radio"/>
-                        <span className="ml-2 font-Dmsans text-gray-700 text-smm">Organiser</span>
+                        <span className="ml-2 font-Dmsans text-gray-700 text-sm">Organiser</span>
                     </label>
                     <div></div>
                     <label>
@@ -85,7 +85,7 @@ function FormPage() {
 
                 <label className="block text-gray-700 text-sm font-semibold font-Dmsans" >Add photos of the event!</label>
                 <div className="flex items-center justify-center w-full">
-                    <label className="flex flex-col items-center justify-center w-full h-35 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <label className="flex flex-col items-center justify-center w-full h-35 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:border-gray-100 dark:hover:border-gray-100">
                         <div className="flex flex-col items-center justify-center pt-3 pb-3">
                             <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -101,7 +101,7 @@ function FormPage() {
                 <div className="flex justify-end">
                     <a href="#" className="text-sm font-Dmsans text-purple-600 hover:text-purple-700 hover:underline pt-6 mb-4">Back</a>
                 </div>
-                <button className="bg-purple-600 hover:bg-purple-700 text-white font-Dmsans font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-Dmsans font-semibold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
             </form>
         </section>
         </div>
