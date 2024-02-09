@@ -21,7 +21,7 @@ export default function EventPage() {
                     </ProgressBar>
                 </div>    
             </div>
-            <div className="flex flex-col items-center bg-white font-Dmsans w-3/5 rounded-xl mr-auto mt-100">
+            <div className="flex flex-col items-center bg-white font-Dmsans w-3/5 rounded-xl mr-auto mb-3 mt-6">
                 <h2 className="text-xl font-semibold mr-auto mb-3 mx-8 mt-6">Volunteers</h2>
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full"><ProgressBar variant="success" now={progVolunteers} label={`${progVolunteers}`} /></div>
                 <h2 className="text-xl font-semibold mr-auto mb-3 mx-8 mt-6">Photos Uploaded</h2>
@@ -30,7 +30,9 @@ export default function EventPage() {
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full"><ProgressBar variant="danger" now={progSmiles} label={`${progSmiles}`} /></div>
             </div>
 
-            
+            <div className="mr-auto w-full mb-4">
+                <VolunteerCard name="Volunteer A" description="..." />
+            </div>
         </main>
     )
 }
