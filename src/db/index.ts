@@ -87,6 +87,14 @@ export class DatabaseClient {
         });
         return result;
     }
+
+    async getEventsForms() {
+        const events = await this.client.collection("forms").getFullList({
+            sort: "-created", expand: "userList, form",
+        });
+        return events;
+    }
+    
 }
 
 export const db = new DatabaseClient();

@@ -11,6 +11,12 @@ function FormPage() {
     const [eventName, setEventName] = React.useState<string>('');
     const [image, setImage] = React.useState<File| null>(null);
     const [error, setError] = React.useState(''); 
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+          setImage(files[0]);
+        }
+      };
  
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => { 
         event.preventDefault(); 
@@ -65,7 +71,10 @@ function FormPage() {
 
                 <label className="block font-Dmsans text-gray-700 text-sm font-semibold" >Event</label>
                 <div className="mb-8 pt-3 rounded bg-gray-100">
-                    <select className="pt-3 bg-white rounded w-full text-gray-700 text-sm outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2">
+                    <select 
+                    className="pt-3 bg-white rounded w-full text-gray-700 text-sm outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"
+                    value={eventName}
+                    onChange={(e) => setEventName(e.target.value)}>
                         <option value="Ongoing Events">Ongoing Events</option>
                         <option value="Earth Oven">Earth Oven</option>
                         <option value="Wood Upcycling">Wood Upcycling</option>
@@ -75,12 +84,21 @@ function FormPage() {
 
                 <label className="block font-Dmsans text-gray-700 text-sm font-semibold" >Hours</label>
                 <div className="mb-8 pt-3 rounded bg-gray-100">
-                    <input type="integer" className=" pt-1 bg-white rounded w-full font-Dmsans text-gray-700 outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"/>
+                    <input 
+                        type="integer" 
+                        className=" pt-1 bg-white rounded w-full font-Dmsans text-gray-700 outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"
+                        value={hours}
+                        onChange={(e) => setHours(Number(e.target.value))}/>
                 </div>
 
                 <label className="flex-grow text-gray-700 text-sm font-semibold font-Dmsans" >Write Up</label>
                 <div className="mb-8 pt-3 rounded bg-gray-100">
-                    <input type="string" className="pt-1 bg-white rounded w-full text-gray-700 outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"/>
+                    <input 
+                        type="string" 
+                        className="pt-1 bg-white rounded w-full text-gray-700 outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}/>
+                        
                 </div>
 
                 <label className="block text-gray-700 text-sm font-semibold font-Dmsans" >Add photos of the event!</label>
@@ -93,7 +111,7 @@ function FormPage() {
                             <p className="mb-2 text-sm font-Dmsans text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                             <p className="text-xs font-Dmsans text-gray-700 dark:text-gray-400">PNG or JPG </p>
                         </div>
-                        <input id="dropzone-file" type="file" className="hidden" />
+                        <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
                     </label>
                 </div> 
 
@@ -101,7 +119,7 @@ function FormPage() {
                 <div className="flex justify-end">
                     <a href="#" className="text-sm font-Dmsans text-purple-600 hover:text-purple-700 hover:underline pt-6 mb-4">Back</a>
                 </div>
-                <button className="bg-purple-600 hover:bg-purple-700 text-white font-Dmsans font-semibold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-Dmsans font-semibold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Submit</button>
             </form>
         </section>
         </div>
