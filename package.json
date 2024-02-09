@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@progress/kendo-react-charts": "^7.1.0",
+    "@progress/kendo-theme-material": "^7.2.0",
     "cookies-next": "^4.1.1",
     "next": "14.1.0",
     "pocketbase": "^0.21.1",
