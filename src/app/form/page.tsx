@@ -78,7 +78,7 @@ function FormPage() {
                     <input type="integer" className=" pt-1 bg-white rounded w-full font-Dmsans text-gray-700 outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"/>
                 </div>
 
-                <label className="block text-gray-700 text-sm font-semibold font-Dmsans" >Write Up</label>
+                <label className="flex-grow text-gray-700 text-sm font-semibold font-Dmsans" >Write Up</label>
                 <div className="mb-8 pt-3 rounded bg-gray-100">
                     <input type="string" className="pt-1 bg-white rounded w-full text-gray-700 outline-gray-300 focus:outline-gray-400 transition duration-500 px-2 pb-2"/>
                 </div>
