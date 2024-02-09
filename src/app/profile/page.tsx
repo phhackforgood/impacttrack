@@ -68,7 +68,7 @@ function ProfilePage() {
                     <section className=" bg- mt-6"></section>
                         <img className="w-32 h-32 rounded-full mx-auto" src="https://picsum.photos/200" alt="Profile picture" />
                         <div className="flex justify-center mt-5 mb-9">
-                        <a href="#" className="font-Dmsans text-xs text-gray-500 hover:text-purple-600 pr-2">Change profile picture</a>
+                        <a href="#" className="font-Dmsans text-xs text-gray-500 hover:text-purple-600 pr-1">Change profile picture</a>
                         <FaRegEdit onClick={handleIconClick} />
                             <input
                                 type="file"
@@ -81,6 +81,7 @@ function ProfilePage() {
                             />
                         </div>
 
+                        <p className="font-Dmsans te text-gray-500 hover:text-purple-600 pr-1">NAME</p>
                         <div style={{display: 'flex', alignItems: 'center' }}>
                             <h2 className="text-left text-2xl font-Dmsans font-semibold mr-2">
                                 {isEditing ? '' : userName}
@@ -103,11 +104,11 @@ function ProfilePage() {
                         <div className="mt-16 flex flex-row items-left">
                             <div>
                                 <p className="font-Dmsans text-base text-red-400 hover:text-purple-600">300</p>
-                                <a href="#" className="font-Dmsans text-xs text-gray-500 hover:text-purple-600">Activities recorded</a>
+                                <p className="font-Dmsans text-xs text-gray-500">Activities recorded</p>
                             </div>
                             <div>
                                 <p className="font-Dmsans text-base text-blue-400 hover:text-purple-600 ml-10 mx-4">500</p>
-                                <a href="#" className="font-Dmsans text-xs text-gray-500 hover:text-purple-600 ml-10 mx-4">Hours volunteered</a>
+                                <p className="font-Dmsans text-xs text-gray-500 ml-10 mx-4">Hours volunteered</p>
                             </div>
                         </div>
                 </form>
