@@ -1,5 +1,7 @@
 import Link from "next/link";
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import VolunteerCard from "../components/VolunteerCard";
 
 export default function EventPage() {
     const progVolunteers = 84;
@@ -27,6 +29,8 @@ export default function EventPage() {
                 <h2 className="text-xl font-semibold mr-auto mb-3 mx-8 mt-6">Smiles Recorded</h2>
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full"><ProgressBar variant="danger" now={progSmiles} label={`${progSmiles}`} /></div>
             </div>
+
+            
         </main>
     )
 }

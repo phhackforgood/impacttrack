@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface EventCardProps {
     title: string;
