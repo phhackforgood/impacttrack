@@ -10,7 +10,7 @@ const SideBar = () => {
         <div className="fixed top-0 left-0 h-screen w-16 p-0 m-0 flex flex-col bg-white text-black shadow">
             <Divider />
             <Link href="/"><SideBarIcon icon={<IoHomeOutline size="28" />} text="Home" /></Link>
-            <Link href="/"><SideBarIcon icon={<BsPlus size="28" />} text="Submit Form" /></Link>
+            <Link href="/form"><SideBarIcon icon={<BsPlus size="28" />} text="Submit Form" /></Link>
             <Link href="/"><SideBarIcon icon={<PiFireSimple size="28" />} text="Trending" /></Link>
             <Link href="/"><SideBarIcon icon={<MdOutlineQueryStats size="28" />} text="Statistics" /></Link>
             <Link href="/profile"><SideBarIcon icon={<CgProfile size="28" />} text="Profile" /></Link>
