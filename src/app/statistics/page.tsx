@@ -1,27 +1,13 @@
-'use client'; 
 import React from 'react' 
 import db from '../../db';
 import EventCard from '../components/EventCard';
- 
- 
-async function StatisticsPage() {
-    const [error, setError] = React.useState('');
-    const [events, setEvents] = React.useState([]);
-    try { 
-        const response = await fetch('/api/statistics', { 
-            method: 'GET', 
-            headers: { 'Content-Type': 'application/json' }, 
-        }); 
-        if (!response.ok) { 
-            setError('Failed to authenticate user 0'); 
-            return; 
-        };  
-        setEvents(await response.json());
-    } catch (err) {
-        setError('Failed to submit form 2');
-    }
-    console.log(events)
 
+
+async function getStatistics() {
+
+}
+ 
+function StatisticsPage() {
   return (
     <main className="flex min-h-screen flex-col justify-between items-center px-24 py-32 bg-gray-100">
       {/* {events?.map((event, index) => {
@@ -32,7 +18,7 @@ async function StatisticsPage() {
           
         );
       })} */}
-      
+      <h1 className='font-Dmsans text-3xl'>Statistics Page</h1>
     </main>
   );
  
