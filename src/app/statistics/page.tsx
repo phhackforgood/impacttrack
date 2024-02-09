@@ -10,10 +10,11 @@ import {
     ChartCategoryAxis,
     ChartCategoryAxisItem,
   } from "@progress/kendo-react-charts";
-const [error, setError] = React.useState('');
-const [events, setEvents] = React.useState([]); 
+ 
  
 async function StatisticsPage() {
+    const [error, setError] = React.useState('');
+    const [events, setEvents] = React.useState([]);
     try { 
         const response = await fetch('/api/statistics', { 
             method: 'GET', 
