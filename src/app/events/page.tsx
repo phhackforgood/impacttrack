@@ -8,7 +8,7 @@ export default function EventPage() {
     const max = 250;
     
     return (
-        <main>
+        <main className="flex min-h-screen flex-col justify-between items-center px-24 py-10 bg-gray-100">
             <div className="flex flex-col items-center bg-white font-Dmsans hover:shadow-xl w-3/5 h-300 rounded-xl mr-auto">
                 <h1 className="text-2xl font-semibold mr-auto mb-3 mx-8 mt-6">Key Performance Indicators</h1>
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full">
