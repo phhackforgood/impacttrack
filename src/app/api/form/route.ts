@@ -8,7 +8,7 @@ import { User, Event } from "@/types";
 export async function POST(request: Request) { 
     try {
         const cookieStore = cookies();
-        const user: User | false = await db.getUser(cookieStore); 
+        const user = await db.getUser(cookieStore); 
         const { text, hours, date, eventName, image } = await request.json();
         const event  = await db.getEventbyTitle(eventName);
         const eventId = event.id;
