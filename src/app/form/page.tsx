@@ -101,7 +101,7 @@ function FormPage() {
                 <div className="flex justify-end">
                     <a href="#" className="text-sm font-Dmsans text-purple-600 hover:text-purple-700 hover:underline pt-6 mb-4">Back</a>
                 </div>
-                <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-Dmsans font-semibold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Next</button>
             </form>
         </section>
         </div>
