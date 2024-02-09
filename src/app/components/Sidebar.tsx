@@ -3,6 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoHomeOutline } from "react-icons/io5";
 import { PiFireSimple } from "react-icons/pi";
 import { MdOutlineQueryStats } from "react-icons/md";
+import Logout from './Logout';
 import Link from 'next/link';
 
 const SideBar = () => {
@@ -14,7 +15,8 @@ const SideBar = () => {
             <Link href="/"><SideBarIcon icon={<PiFireSimple size="28" />} text="Trending" /></Link>
             <Link href="/"><SideBarIcon icon={<MdOutlineQueryStats size="28" />} text="Statistics" /></Link>
             <Link href="/profile"><SideBarIcon icon={<CgProfile size="28" />} text="Profile" /></Link>
-            <Divider />
+            <Logout />
+            <Divider /> 
             <Link className="mt-auto mb-4" href="/"><SideBarIcon icon={<BsGearFill size="28" />} text="Settings" /></Link>
         </div >
     )
