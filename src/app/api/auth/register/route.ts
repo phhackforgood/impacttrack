@@ -6,6 +6,7 @@ export async function POST(request: Request) {
         const { email, password } = await request.json(); 
         const result = await db.register(email, password); 
  
+        console.log('register result:', result)
         return NextResponse.json(result); 
     } catch (err: any) { 
         return new Response( 
