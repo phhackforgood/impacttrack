@@ -2,14 +2,6 @@
 import React from 'react' 
 import db from '../../db';
 import EventCard from '../components/EventCard';
-import {
-    Chart,
-    ChartTitle,
-    ChartSeries,
-    ChartSeriesItem,
-    ChartCategoryAxis,
-    ChartCategoryAxisItem,
-  } from "@progress/kendo-react-charts";
  
  
 async function StatisticsPage() {
