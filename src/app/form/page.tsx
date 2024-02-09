@@ -38,14 +38,13 @@ function FormPage() {
                 console.log(error); 
             }; 
             console.log(response)
-            const data = await response.json(); 
-            if (data?.token) { 
-                route.push('/'); 
-            } else { 
-                setError('Failed to submit form 1'); 
-            } 
+            const data = await response.json();
+            route.push('/');  
+            console.log(data);
         } catch (err: any) { 
-            setError(err.message); 
+            setError(err.message);
+            console.log(err); 
+            console.log(error);
         } 
     }; 
     

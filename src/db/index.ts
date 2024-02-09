@@ -114,6 +114,21 @@ export class DatabaseClient {
         return this.client.getFileUrl(model, model.avatar);
     }
     
+    async addFormtoEvent(eventId: string, formId: string) {
+        const event = await this.client.collection("events").getOne(eventId);
+        console.log('event:', event);
+        const forms = event.forms || [];
+        forms.push(formId);
+        event.forms = forms;
+        const data = {
+            "title" : event.title,
+            "description" : event.description,
+            "users"  : event.users,
+            "forms" : event.forms
+        }
+        console.log('data before submit:', data);
+        return this.client.collection("events").update(eventId, data);
+    }
     
 }
 
