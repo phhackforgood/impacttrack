@@ -1,4 +1,3 @@
-import Image from "next/image";
 import db from "../db";
 import EventCard from "./components/EventCard";
 
@@ -12,7 +11,6 @@ export default async function Home() {
           <div key={index} className="mr-auto w-full mb-4">
             <EventCard title={event.title} description={event.description} />
           </div>
-          
         );
       })}
     </main>

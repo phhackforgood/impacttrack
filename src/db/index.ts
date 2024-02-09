@@ -1,6 +1,7 @@
 import PocketBase from 'pocketbase';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { User, Event } from '@/types';
+import { RecordModel } from 'pocketbase';
 
 const POCKET_BASE_URL = process.env.POCKET_BASE_URL;
 
@@ -61,7 +62,7 @@ export class DatabaseClient {
         }
 
         this.client.authStore.loadFromCookie(cookie?.value || '');
-        return this.client.authStore.model as User;
+        return this.client.authStore.model as RecordModel;
     }
 
     async getEvents() {
@@ -99,6 +100,10 @@ export class DatabaseClient {
             sort: "-created", expand: "userList, form",
         });
         return events;
+    }
+
+    async getAvatarUrl(model: RecordModel) {
+        return this.client.getFileUrl(model, model.avatar);
     }
     
 }

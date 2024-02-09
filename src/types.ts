@@ -5,6 +5,9 @@ export interface User {
     name: string;
     created: string;
     updated: string;
+    avatar: string;
+    role: string;
+    events: string[];
   }
 
 export interface Form {
