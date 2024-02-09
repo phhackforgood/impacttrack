@@ -11,7 +11,7 @@ export async function POST(request: Request, response: Response) {
         const { text, hours, date, eventName, image } = await request.json();
         console.log("image:", image);
         const cookieStore = cookies();
-        const user: User | false = await db.getUser(cookieStore);
+        const user = await db.getUser(cookieStore);
         console.log('eventName:', eventName);
         console.log('event: START');
         const event  = await db.getEventbyTitle(eventName);
