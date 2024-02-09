@@ -2,9 +2,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
+import { useState } from 'react'
 
 function RegisterPage() {
     const route = useRouter();
+    const [loading, setLoading] = useState<boolean>(false);
     const [email, setEmail] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
     const [confirmPassword, setConfirmPassword] = React.useState<string>('');
@@ -14,6 +16,7 @@ function RegisterPage() {
         event.preventDefault();
 
         try {
+            setLoading(true);
             const form = { email, password };
             const response = await fetch('/api/auth/register', {
                 method: 'POST',
@@ -29,6 +32,7 @@ function RegisterPage() {
                 return;
             };
             const data = await response.json();
+            setLoading(false);
             if (data?.token) {
                 route.push('/auth/login');
             } else {
@@ -62,7 +66,17 @@ function RegisterPage() {
                             <input type="password" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value || '')} className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" />
                         </div>
 
-                        <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Register</button>
+                        <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">
+                            {loading ? (
+                                <div className='flex flex-row justify-center'>
+                                    <div className="animate-spin h-5 w-5 mt-0.5 border-2 rounded-lg border-white" />
+                                    <p className="ml-2 text-white font-Dmsans font-bold text-center">Registering...</p>
+                                </div>
+
+                            ) : (
+                                'Register'
+                            )}
+                        </button>
                         {error && <p className='error'>{error}</p>}
                     </form>
                 </section>
