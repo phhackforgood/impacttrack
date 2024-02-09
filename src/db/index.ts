@@ -65,6 +65,14 @@ export class DatabaseClient {
         return this.client.authStore.model as RecordModel;
     }
 
+    async getEvent(eventId: string) {
+        const event = await this.client.collection("events").getOne(eventId, {
+            expand: "forms"
+        });
+        console.log(event);
+        return event;
+    }
+
     async getEvents() {
         const events = await this.client.collection("events").getFullList({
             sort: "-created", expand: "description",
@@ -99,6 +107,7 @@ export class DatabaseClient {
     async getAvatarUrl(model: RecordModel) {
         return this.client.getFileUrl(model, model.avatar);
     }
+    
     
 }
 
