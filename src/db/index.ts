@@ -87,6 +87,14 @@ export class DatabaseClient {
         });
         return result;
     }
+
+    async updateProfile(userID: string, userName: string, image: File) {
+        const result = await this.client.collection("users").update(userID, {
+            name: userName,
+            avatar: image,
+        });
+        return result;
+    }
 }
 
 export const db = new DatabaseClient();
