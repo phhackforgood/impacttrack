@@ -100,8 +100,8 @@ export class DatabaseClient {
     }
 
     async getEventsForms() {
-        const events = await this.client.collection("forms").getFullList({
-            sort: "-created", expand: "userList, form",
+        const events = await this.client.collection("events").getFullList({
+            sort: "-created", expand: "forms",
         });
         return events;
     }
