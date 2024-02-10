@@ -87,6 +87,16 @@ export class DatabaseClient {
         return events;
     }
 
+    async getUserFromForm(form: RecordModel) {
+        const user = await this.client.collection("users").getOne(form.user);
+        return user;
+    }
+
+    async getForm(formId: string) {
+        const form = await this.client.collection("forms").getOne(formId);
+        return form;
+    }
+
     async submitForm(text: string, hours: number, date: Date, eventId: string, img: File, userId: string) {
         console.log('submitForm: being called');
         console.log('img:', img);
@@ -111,8 +121,10 @@ export class DatabaseClient {
     }
 
     async getAvatarUrl(model: RecordModel) {
+        console.log(model);
         return this.client.getFileUrl(model, model.avatar);
     }
+
     
     async addFormtoEvent(eventId: string, formId: string) {
         const event = await this.client.collection("events").getOne(eventId);
