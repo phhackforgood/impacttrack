@@ -38,9 +38,9 @@ export default async function EventPage({ params }: any) {
                 <h1 className="text-2xl font-semibold mr-auto mb-3 mt-6 ">Key Performance Indicators</h1>
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full">
                     <div className="relative pt-1">
-                        <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-amber-200">
-                            <div style={{ width: "10%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
-                            <div style={{ width: "15%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
+                        <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                            <div style={{ width: `${percentageVolunteers}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+                            <div style={{ width: `${percentageHours}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
                             <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-amber-500"></div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ export default async function EventPage({ params }: any) {
                 </div>
             </div>
 
-            <div className="mr-auto w-full mb-4 flex flex-row">
+            <div className="mr-auto w-full my-4 flex flex-row">
                 {forms?.map((form: any, index: any) => {
                     return <div className="mr-4" key={index}><VolunteerCard formId={form.id} image={form.image} /></div>
                 })}

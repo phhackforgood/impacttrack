@@ -22,7 +22,7 @@ const EventCard = async (props: EventCardProps) => {
                 <h2 className="text-2xl font-semibold mr-auto mb-3 mx-6 mt-6">{title}</h2>
                 <h3 className="text-sm font-light text-left text-gray-400 leading-2 text-wrap ml-12 w-full">{description}</h3>
                 <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700 ml-12 my-4">
-                    <div style={{width: "30%"}} className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full">50%</div>
+                    <div style={{width: "30%"}} className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full">30%</div>
                 </div>
             </div>
         </Link>
