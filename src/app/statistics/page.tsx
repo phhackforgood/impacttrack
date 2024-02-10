@@ -14,7 +14,6 @@ function StatisticsPage() {
         const response = await fetch('/api/statistics', { 
                  method: 'GET', 
              });
-             console.log(response);
              setEvents(await response.json());  
       } catch (error) {
         console.error('Error fetching statistics:', error);
@@ -29,7 +28,7 @@ function StatisticsPage() {
     const labels = Array.from({ length: 7 }, (_, index) => {
       const date = new Date(today);
       date.setDate(today.getDate() - index);
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return date.toLocaleDateString('en-US', { year:'numeric', month: 'short', day: 'numeric' });
     });
     return labels.reverse();
   };
@@ -37,23 +36,32 @@ function StatisticsPage() {
   // Function to generate the data object based on eventDataStat
 const generateData = (eventDataStat: EventDataStat[]): any => {
   const labels = getPast7DaysLabels();
-  console.log(labels);
-  console.log(events, 'events WYA');
-  const datasets = eventDataStat.map(({ eventName, forms }: EventDataStat) => {
+  const colorPairs = [
+    { background: 'rgb(75, 192, 192)', border: 'rgba(75, 192, 192, 0.2)' },
+    { background: 'rgb(255, 99, 132)', border: 'rgba(255, 99, 132, 0.2)' },
+    { background: 'rgb(54, 162, 235)', border: 'rgba(54, 162, 235, 0.2)' },
+    // Add more color pairs as needed
+  ];
+  const datasets = eventDataStat.map(({ eventName, forms }: EventDataStat, index) => {
+    const colorPair = colorPairs[index % colorPairs.length];
     const data = labels.map((labelDate) => {
+      const utcLabelDate = new Date(labelDate + ' UTC');
       const cumulativeHours = forms
-        .filter((form) => form.created.includes(labelDate))
-        .reduce((totalHours, form) => totalHours + form.hours, 0);
+      .filter((form) => {
+        // Assuming form.created is in UTC format
+        const utcFormCreated = new Date(form.created);
+        return utcFormCreated.toISOString().includes(utcLabelDate.toISOString().split('T')[0]);
+      })
+      .reduce((totalHours, form) => totalHours + form.hours, 0);
 
       return cumulativeHours;
     });
-
     return {
       label: eventName,
       data,
       fill: false,
-      backgroundColor: 'rgb(75, 192, 192)',
-      borderColor: 'rgba(75, 192, 192, 0.2)',
+      backgroundColor: colorPair.background,
+      borderColor: colorPair.border,
     };
   });
   return {
