@@ -26,7 +26,7 @@ export default async function EventPage({params}: any) {
     const max = 250;
     
     return (
-        <main className="flex min-h-screen flex-col items-center px-24 py-10 bg-gray-300">
+        <main className="flex min-h-screen flex-col items-center px-24 py-10 bg-gray-100">
             <div className="flex flex-col items-center font-Dmsans w-3/5 mr-auto mb-3 mt-6">
                 <h1> {title}</h1>
                 <h2 className="text-sm"> {description}</h2>

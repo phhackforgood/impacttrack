@@ -3,15 +3,16 @@ import { on } from 'events';
 import Link from 'next/link'; 
 import { useRouter } from 'next/navigation'; 
 import React from 'react' 
+import { useState } from 'react';
  
 function FormPage() { 
     const route = useRouter(); 
-    const [text, setText] = React.useState<string>(''); 
-    const [hours, setHours] = React.useState<number>(0); 
-    const [date, setDate] = React.useState<Date| null>(null);
-    const [eventName, setEventName] = React.useState<string>('Earth Oven');
-    const [image, setImage] = React.useState<File| null>(null);
-    const [error, setError] = React.useState(''); 
+    const [text, setText] = useState<string>(''); 
+    const [hours, setHours] = useState<number>(0); 
+    const [date, setDate] = useState<Date| null>(null);
+    const [eventName, setEventName] = useState<string>('Earth Oven');
+    const [image, setImage] = useState<File| null>(null);
+    const [error, setError] = useState(''); 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files && files.length > 0) {
@@ -24,13 +25,17 @@ function FormPage() {
         event.preventDefault();
         console.log('submitting form');
         try { 
-            console.log(eventName + "eventName");
-            console.log(image + "img being sent");
-            const form = { text, hours, date, eventName, image};
+            const formData = new FormData();
+            formData.set('text', text);
+            formData.set('hours', hours.toString());
+            formData.set('date', date?.toISOString() || '');
+            formData.set('eventName', eventName);
+            if (image) {
+                formData.set('image', image);
+            }
             const response = await fetch('/api/form', { 
                 method: 'POST', 
-               headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify(form),
+                body: formData,
             }); 
 
             if (!response.ok) { 
@@ -39,7 +44,7 @@ function FormPage() {
             }; 
             console.log(response)
             const data = await response.json();
-            route.push('/');  
+            // route.push('/');  
             console.log(data);
         } catch (err: any) { 
             setError(err.message);
