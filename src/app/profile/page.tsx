@@ -2,10 +2,10 @@ import React from 'react'
 import { FaRegEdit } from "react-icons/fa";
 import { cookies } from 'next/headers';
 import db from '@/db';
+import Image from 'next/image';
 
 async function ProfilePage() { 
     const user = await db.getUser(cookies());
-    console.log(user);
     const { name, role, events } = user as any;
     const userAvatar = await db.getAvatarUrl(user as any);
 
@@ -17,7 +17,7 @@ async function ProfilePage() {
             <div className="main">
                 <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
                     <section className=" bg- mt-6"></section>
-                        <img className="w-32 h-32 rounded-full mx-auto" src={userAvatar} alt="Profile picture" />
+                        <Image className="rounded-full mx-auto" src={userAvatar} alt="Profile picture" width={300} height={300}/>
                         <div className="flex justify-center mt-5 mb-9">
                         <a href="#" className="font-Dmsans text-xs text-gray-500 hover:text-purple-600 pr-2">Change profile picture</a>
                         <FaRegEdit />

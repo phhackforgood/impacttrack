@@ -15,13 +15,10 @@ function countHours(forms: any) {
 
 export default async function EventPage({params}: any) {
     const event = await db.getEvent(params.id);
-    console.log(event);
     const {title, description, users, expand} = event as any; 
     const forms = expand.forms;
     const totalHours = countHours(forms);
     const volunteers = users.length;
-    const progVolunteers = 84;
-    const progPhotos = 50;
     const progSmiles = 57;
     const max = 250;
     
@@ -48,8 +45,10 @@ export default async function EventPage({params}: any) {
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full mb-4"><ProgressBar variant="danger" now={progSmiles} label={`${progSmiles}`} /></div>
             </div>
 
-            <div className="mr-auto w-full mb-4">
-                <VolunteerCard name="Volunteer A" description="..." />
+            <div className="mr-auto w-full mb-4 flex flex-row">
+                {forms?.map((form: any, index: any) => {
+                    return <div className="mr-4" key={index}><VolunteerCard formId={form.id} image={form.image}/></div>
+                })}
             </div>
         </main>
     )
