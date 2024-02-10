@@ -1,63 +1,14 @@
-'use client';
-import Link from 'next/link'; 
-import { useRouter } from 'next/navigation'; 
-import React, { useState, useRef } from 'react' 
+import React from 'react' 
 import { FaRegEdit } from "react-icons/fa";
- 
-function ProfilePage() { 
-    const route = useRouter(); 
-    const [userName, setUserName] = React.useState<string>('');
-    const [image, setImage] = React.useState<File| null>(null);
-    const [error, setError] = React.useState(''); 
-    
-    const fileInput = useRef(null);
-    const handleIconClick = () => {
-        if (fileInput.current) {
-            (fileInput.current as HTMLInputElement).click();
-        }
-    };
+import { cookies } from 'next/headers';
+import db from '@/db';
 
-    const [isEditing, setIsEditing] = useState(false);
-    const userNameInput = useRef<HTMLInputElement>(null);
+async function ProfilePage() { 
+    const user = await db.getUser(cookies());
+    console.log(user);
+    const { name, role, events } = user as any;
+    const userAvatar = await db.getAvatarUrl(user as any);
 
-    const handleIconClickName = () => {
-        setIsEditing(true);
-        // Focus the input after a short delay to ensure that it's visible
-        setTimeout(() => {
-            if (userNameInput.current) {
-                userNameInput.current.focus();
-            }
-        }, 100);
-    };
-
-    const handleBlur = () => {
-        setIsEditing(false);
-    };
-
-    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => { 
-        event.preventDefault(); 
- 
-        try { 
-            const form = { image }; 
-            const response = await fetch('/api/profile', { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify(form) 
-            }); 
-            if (!response.ok) { 
-                setError('Failed to authenticate user 0'); 
-                return; 
-            }; 
-            const data = await response.json(); 
-            if (data?.token) { 
-                route.push('/'); 
-            } else { 
-                setError('Failed to update profile'); 
-            } 
-        } catch (err) { 
-            setError('Failed to update profile'); 
-        } 
-    }; 
 
     return (
         <div className="flex flex-col">
@@ -66,7 +17,7 @@ function ProfilePage() {
             <div className="main">
                 <form className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl" method="POST" action="#" onSubmit={onSubmit}>
                     <section className=" bg- mt-6"></section>
-                        <img className="w-32 h-32 rounded-full mx-auto" src="https://picsum.photos/200" alt="Profile picture" />
+                        <img className="w-32 h-32 rounded-full mx-auto" src={userAvatar} alt="Profile picture" />
                         <div className="flex justify-center mt-5 mb-9">
                         <a href="#" className="font-Dmsans text-xs text-gray-500 hover:text-purple-600 pr-1">Change profile picture</a>
                         <FaRegEdit onClick={handleIconClick} />
@@ -83,23 +34,11 @@ function ProfilePage() {
 
                         <p className="font-Dmsans te text-gray-500 hover:text-purple-600 pr-1">NAME</p>
                         <div style={{display: 'flex', alignItems: 'center' }}>
-                            <h2 className="text-left text-2xl font-Dmsans font-semibold mr-2">
-                                {isEditing ? '' : userName}
-                            </h2>
-                            <FaRegEdit onClick={handleIconClickName} />
-                            {isEditing && (
-                                <input
-                                    type="text"
-                                    id="name"
-                                    value={userName}
-                                    onChange={e => setUserName(e.target.value || '')}
-                                    onBlur={handleBlur}
-                                    ref={userNameInput}
-                                />
-                            )}
+                            <h2 className="text-left text-2xl font-Dmsans font-semibold mr-2">{name}</h2>
+                            <FaRegEdit />
                         </div>
 
-                        <p className="text-left text-sm font-Dmsans text-gray-600 mt-1">Volunteer/Organiser/Beneficiary</p>
+                        <p className="text-left text-sm font-Dmsans text-gray-600 mt-1">{role}</p>
 
                         <div className="mt-16 flex flex-row items-left">
                             <div>

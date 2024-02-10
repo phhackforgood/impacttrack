@@ -1,6 +1,7 @@
 import PocketBase from 'pocketbase';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { User, Event } from '@/types';
+import { RecordModel } from 'pocketbase';
 
 const POCKET_BASE_URL = process.env.POCKET_BASE_URL;
 
@@ -61,7 +62,15 @@ export class DatabaseClient {
         }
 
         this.client.authStore.loadFromCookie(cookie?.value || '');
-        return this.client.authStore.model as User;
+        return this.client.authStore.model as RecordModel;
+    }
+
+    async getEvent(eventId: string) {
+        const event = await this.client.collection("events").getOne(eventId, {
+            expand: "forms"
+        });
+        console.log(event);
+        return event;
     }
 
     async getEvents() {
@@ -72,29 +81,55 @@ export class DatabaseClient {
     }
 
     async getEventbyTitle(title: string) {
+        console.log('title: being called', title);
         const events = await this.client.collection("events").getFirstListItem(`title="${title}"`);
+        console.log('events:', events);
         return events;
     }
 
     async submitForm(text: string, hours: number, date: Date, eventId: string, img: File, userId: string) {
-        const result = await this.client.collection("forms").create({
-            content: text,
-            hours: hours,
-            date: date,
-            event: eventId,
-            user: userId,
-            image: img,
-        });
+        console.log('submitForm: being called');
+        console.log('img:', img);
+        const data = {
+            "user": userId,
+            "eventDate": new Date(),
+            "content": text,
+            "event": eventId,
+            "hours": hours,
+            "image": img
+        }
+        const result = await this.client.collection("forms").create(data);
+        console.log('submitForm result:', result);
         return result;
     }
 
-    async updateProfile(userID: string, userName: string, image: File) {
-        const result = await this.client.collection("users").update(userID, {
-            name: userName,
-            avatar: image,
+    async getEventsForms() {
+        const events = await this.client.collection("forms").getFullList({
+            sort: "-created", expand: "userList, form",
         });
-        return result;
+        return events;
     }
+
+    async getAvatarUrl(model: RecordModel) {
+        return this.client.getFileUrl(model, model.avatar);
+    }
+    
+    async addFormtoEvent(eventId: string, formId: string) {
+        const event = await this.client.collection("events").getOne(eventId);
+        console.log('event:', event);
+        const forms = event.forms || [];
+        forms.push(formId);
+        event.forms = forms;
+        const data = {
+            "title" : event.title,
+            "description" : event.description,
+            "users"  : event.users,
+            "forms" : event.forms
+        }
+        console.log('data before submit:', data);
+        return this.client.collection("events").update(eventId, data);
+    }
+    
 }
 
 export const db = new DatabaseClient();
