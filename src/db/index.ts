@@ -64,12 +64,17 @@ export class DatabaseClient {
     }
 
     async getEvent(eventId: string) {
-        const event = await this.client.collection("events").getOne(eventId, {
-            expand: "forms"
-        });
-        console.log(event);
-        return event;
-    }
+        try {
+            const event = await this.client.collection("events").getOne(eventId, {
+                expand: "forms"
+            });
+            console.log("Retrieved event:", event);
+            return event;
+        } catch (error) {
+            console.error("Error retrieving event:", error);
+            throw error; // Re-throw the error to be handled in the calling code
+        }
+    }      
 
     async getEvents() {
         const events = await this.client.collection("events").getFullList({
@@ -117,6 +122,11 @@ export class DatabaseClient {
     async getAvatarUrl(model: RecordModel) {
         console.log(model);
         return this.client.getFileUrl(model, model.avatar);
+    }
+    
+    async getEventImageUrl(model: RecordModel) {
+        console.log(model);
+        return this.client.getFileUrl(model, model.image);
     }
     
     async addFormtoEvent(eventId: string, formId: string) {
