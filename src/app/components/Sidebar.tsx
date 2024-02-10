@@ -13,7 +13,7 @@ const SideBar = () => {
             <Link href="/"><SideBarIcon icon={<IoHomeOutline size="28" />} text="Home" /></Link>
             <Link href="/form"><SideBarIcon icon={<BsPlus size="28" />} text="Submit Form" /></Link>
             <Link href="/"><SideBarIcon icon={<PiFireSimple size="28" />} text="Trending" /></Link>
-            <Link href="/"><SideBarIcon icon={<MdOutlineQueryStats size="28" />} text="Statistics" /></Link>
+            <Link href="/statistics"><SideBarIcon icon={<MdOutlineQueryStats size="28" />} text="Statistics" /></Link>
             <Link href="/profile"><SideBarIcon icon={<CgProfile size="28" />} text="Profile" /></Link>
             <Logout />
             <Divider /> 

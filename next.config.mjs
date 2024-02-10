@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+        domains: ['impact-track.pockethost.io'],
+      },
+};
 
 export default nextConfig;

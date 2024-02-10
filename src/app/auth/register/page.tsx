@@ -32,12 +32,9 @@ function RegisterPage() {
                 return;
             };
             const data = await response.json();
+            console.log(data);
             setLoading(false);
-            if (data?.token) {
-                route.push('/auth/login');
-            } else {
-                setError('Failed to authenticate user 1');
-            }
+            route.push('/auth/login');
         } catch (err) {
             setEmail('Failed to authenticate user 2');
         }
