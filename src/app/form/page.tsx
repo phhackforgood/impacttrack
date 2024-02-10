@@ -21,9 +21,7 @@ function FormPage() {
       };
  
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => { 
-
         event.preventDefault();
-        console.log('submitting form');
         try { 
             const formData = new FormData();
             formData.set('text', text);
