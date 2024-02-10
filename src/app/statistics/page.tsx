@@ -37,9 +37,9 @@ function StatisticsPage() {
 const generateData = (eventDataStat: EventDataStat[]): any => {
   const labels = getPast7DaysLabels();
   const colorPairs = [
-    { background: 'rgb(75, 192, 192)', border: 'rgba(75, 192, 192, 0.2)' },
-    { background: 'rgb(255, 99, 132)', border: 'rgba(255, 99, 132, 0.2)' },
-    { background: 'rgb(54, 162, 235)', border: 'rgba(54, 162, 235, 0.2)' },
+    { background: 'rgb(75, 192, 192)', border: 'rgba(75, 192, 192, 0.5)' },
+    { background: 'rgb(255, 99, 132)', border: 'rgba(255, 99, 132, 0.5)' },
+    { background: 'rgb(54, 162, 235)', border: 'rgba(54, 162, 235, 0.5)' },
     // Add more color pairs as needed
   ];
   const datasets = eventDataStat.map(({ eventName, forms }: EventDataStat, index) => {
