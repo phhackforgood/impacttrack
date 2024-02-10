@@ -1,7 +1,44 @@
+"use client";
+import React from 'react';
+import { Line } from 'react-chartjs-2';
+
+function LineChart() {
+  const data = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'My First dataset',
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: false,
+        backgroundColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgba(75, 192, 192, 0.2)',
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
+  return 
+  <div></div>
+}
+
+export default LineChart;
+
+
+/*
 import React from 'react' 
 import db from '../../db';
 import EventCard from '../components/EventCard';
-
 
 async function getStatistics() {
 
@@ -17,7 +54,7 @@ function StatisticsPage() {
           </div>
           
         );
-      })} */}
+      })} }
       <h1 className='font-Dmsans text-3xl'>Statistics Page</h1>
     </main>
   );
@@ -26,3 +63,4 @@ function StatisticsPage() {
 }
 
 export default StatisticsPage;
+*/
