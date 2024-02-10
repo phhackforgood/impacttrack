@@ -8,13 +8,15 @@ export async function GET(request: Request) {
     try {
         const result = await db.getEventsForms();
         // return list of events with forms
+        console.log(result, 'result');
         const eventForms = result.map((event: any) => {
             return {
                 eventName: event.title,
-                forms: event.forms,
-                userList: event.userList,
+                forms: event.expand.forms,
+                users: event.users,
             }
         })
+        console.log(eventForms, 'eventForms');
         return NextResponse.json(eventForms);
     } catch (err: any) { 
         return new Response( 

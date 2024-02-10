@@ -1,38 +1,105 @@
 "use client";
-import React from 'react';
+import React from 'react'; 
+import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
+import db from '../../db';
+import EventCard from '../components/EventCard';
 
-function LineChart() {
+async function getStatistics() {
+  try {
+    const response = await fetch('/api/statistics', { 
+      method: 'GET', 
+  });
+  console.log(response);
+
+  if (!response.ok) { 
+    console.log('Failed to authenticate get data from server');
+    throw new Error('Failed to authenticate get data from server');
+  }; 
+  return response.json();
+  } catch (err: any) { 
+      console.log(err.message);
+  }
+ 
+}
+
+async function statistics() {
+  let earthOven;
+  let WoodUpcycling;
+  let glass
+  const events = await getStatistics();
+  console.log(events);
+
+  // const generateData = (e: any) => {
+  //   const labels = ['Jan', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+  //   const datasets = e.map(({ eventName, forms }) => ({
+  //     label: eventName,
+  //     data: forms.map((form) => /* Access the form data or modify as needed */),
+  //     fill: false,
+  //     backgroundColor: 'rgb(75, 192, 192)',
+  //     borderColor: 'rgba(75, 192, 192, 0.2)',
+  //   }));
+  // }
+
+  
+
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+
+    labels: ['Jan', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
       {
-        label: 'My First dataset',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: '',
+        data: [65, 59, 80, 80, 80, 80, 80],
+        fill: false,
+        backgroundColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgba(75, 192, 192, 0.2)',
+      },
+      {
+        label: '',
+        data: [20, 40, 50, 60, 100, 102, 106],
+        fill: false,
+        backgroundColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgba(75, 192, 192, 0.2)',
+      },
+      {
+        label: '',
+        data: [10, 15, 40, 60, 100, 120, 130],
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
         borderColor: 'rgba(75, 192, 192, 0.2)',
       },
     ],
   };
-
-  const options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+   const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'Cumulative hours',
+      },
     },
   };
+    
+ 
 
-  return 
-  <div></div>
+  return (
+    //<main className="flex flex-col flex justify-between items-center px-0 py-50 bg-gray-100">
+    <div className="flex-grow">
+      <p><Line data={data} options={options} /></p>
+    </div> 
+    //</main>
+    
+  )
+    
+  
+  
 }
 
-export default LineChart;
+export default statistics;
 
 
 /*
