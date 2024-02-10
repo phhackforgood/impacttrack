@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-gray-100`} >
-        <div>
+        <div className="flex flex-row">
           <SideBar />
-          <div>{children}</div>
+          <div className="flex-grow">{children}</div>
         </div>
       </body>
     </html >
