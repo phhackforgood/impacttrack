@@ -4,13 +4,6 @@ import { cookies } from "next/headers";
 import { User, Event } from "@/types";
 import { NextApiRequest, NextApiResponse } from "next";
 
-
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
-
 export async function POST(request: Request, response: Response) { 
     try {
         const formData = await request.formData();
