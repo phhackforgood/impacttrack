@@ -1,77 +1,68 @@
 "use client";
-import React from 'react'; 
+import React from 'react';
+import { useState, useEffect } from 'react'; 
 import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import db from '../../db';
-import EventCard from '../components/EventCard';
+import { EventDataStat } from '@/types';
+import db from '@/db';
 
-async function getStatistics() {
-  try {
-    const response = await fetch('/api/statistics', { 
-      method: 'GET', 
-  });
-  console.log(response);
+function StatisticsPage() {
+  const [events, setEvents] = useState<EventDataStat[]>([]);
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const response = await fetch('/api/statistics', { 
+                 method: 'GET', 
+             });
+             console.log(response);
+             setEvents(await response.json());  
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      }
+    };
 
-  if (!response.ok) { 
-    console.log('Failed to authenticate get data from server');
-    throw new Error('Failed to authenticate get data from server');
-  }; 
-  return response.json();
-  } catch (err: any) { 
-      console.log(err.message);
-  }
- 
-}
-
-async function statistics() {
-  let earthOven;
-  let WoodUpcycling;
-  let glass
-  const events = await getStatistics();
-  console.log(events);
-
-  // const generateData = (e: any) => {
-  //   const labels = ['Jan', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-  //   const datasets = e.map(({ eventName, forms }) => ({
-  //     label: eventName,
-  //     data: forms.map((form) => /* Access the form data or modify as needed */),
-  //     fill: false,
-  //     backgroundColor: 'rgb(75, 192, 192)',
-  //     borderColor: 'rgba(75, 192, 192, 0.2)',
-  //   }));
-  // }
-
+    fetchStatistics();
+  }, []);
   
-
-  const data = {
-
-    labels: ['Jan', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: '',
-        data: [65, 59, 80, 80, 80, 80, 80],
-        fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
-      },
-      {
-        label: '',
-        data: [20, 40, 50, 60, 100, 102, 106],
-        fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
-      },
-      {
-        label: '',
-        data: [10, 15, 40, 60, 100, 120, 130],
-        fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
-      },
-    ],
+  const getPast7DaysLabels = (): string[] => {
+    const today = new Date();
+    const labels = Array.from({ length: 7 }, (_, index) => {
+      const date = new Date(today);
+      date.setDate(today.getDate() - index);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    });
+    return labels.reverse();
   };
-   const options = {
+
+  // Function to generate the data object based on eventDataStat
+const generateData = (eventDataStat: EventDataStat[]): any => {
+  const labels = getPast7DaysLabels();
+  console.log(labels);
+  console.log(events, 'events WYA');
+  const datasets = eventDataStat.map(({ eventName, forms }: EventDataStat) => {
+    const data = labels.map((labelDate) => {
+      const cumulativeHours = forms
+        .filter((form) => form.created.includes(labelDate))
+        .reduce((totalHours, form) => totalHours + form.hours, 0);
+
+      return cumulativeHours;
+    });
+
+    return {
+      label: eventName,
+      data,
+      fill: false,
+      backgroundColor: 'rgb(75, 192, 192)',
+      borderColor: 'rgba(75, 192, 192, 0.2)',
+    };
+  });
+  return {
+    labels,
+    datasets,
+  };
+};
+const data = generateData(events);
+const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -83,9 +74,6 @@ async function statistics() {
       },
     },
   };
-    
- 
-
   return (
     //<main className="flex flex-col flex justify-between items-center px-0 py-50 bg-gray-100">
     <div className="flex-grow">
@@ -94,12 +82,10 @@ async function statistics() {
     //</main>
     
   )
-    
-  
   
 }
 
-export default statistics;
+export default StatisticsPage;
 
 
 /*

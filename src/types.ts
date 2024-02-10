@@ -30,3 +30,10 @@ export interface Event {
     created: string;
     updated: string;
 }
+
+export interface EventDataStat {
+       eventName: string;
+        forms: Form[];
+        users: string[];
+        
+};
