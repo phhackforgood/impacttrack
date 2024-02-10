@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { Progress } from "@material-tailwind/react";
-
 
 interface EventCardProps {
     id: string;
