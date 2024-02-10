@@ -28,13 +28,22 @@ function FormPage() {
             formData.set('hours', hours.toString());
             formData.set('date', date?.toISOString() || '');
             formData.set('eventName', eventName);
+            const form2 = new FormData();
             if (image) {
                 formData.set('image', image);
+                form2.set('image', image);
             }
+            
+
             const response = await fetch('/api/form', { 
                 method: 'POST', 
                 body: formData,
             }); 
+
+            // const response2 = await fetch('/api/openCv', {
+            //     method: 'POST',
+            //     body: form2,
+            // });
 
             if (!response.ok) { 
                 setError('Failed to authenticate get data from server');
