@@ -1,20 +1,30 @@
 import Link from "next/link";
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import Image from "next/image";
+import db from "@/db";
+import { RecordModel } from "pocketbase";
 
 interface VolunterCardProps {
-    name: string;
-    description: string;
+    image: string;
+    formId: string;
 }
 
-const VolunteerCard = (props: VolunterCardProps) => {
-    const { name, description } = props;
-    const progress = 20;
+const VolunteerCard = async (props: VolunterCardProps) => {
+    const { image, formId } = props;
+    const form = await db.getForm(formId);
+    console.log(form);
+    const username = await db.client.collection("users").getOne(form.user);
+    const imageUrl = db.client.files.getUrl(form, image);
+    const hours = form.hours;
+
     return (
-        <Link href="/events" className="flex flex-col items-center bg-white hover:shadow-xl font-Dmsans w-60 h-40 rounded-xl mr-auto">
-            <h2 className="text-2xl font-semibold mr-auto mb-3 mx-8 mt-6">Volunteer A</h2>
-            <h3 className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full">Comets are a big source of ...</h3>
-            
-        </Link>
+        <div className="flex flex-col items-center bg-white hover:shadow-xl font-Dmsans w-60 rounded-xl mr-auto ">
+            <Image className=" rounded-md mx-auto" src={imageUrl} alt="Profile picture" width={300} height = {300}/>
+            <h2 className="text-2xl font-semibold ml-4 mr-auto mt-2">
+                {username.name ? username.name : "Anonymous"}
+            </h2>
+            <h3 className="text-sm font-light text-left text-gray-400 leading-2 text-wrap pl-4 w-full">{form.content}</h3>
+            <h3 className=" text-base">Hours Volunteered: {hours}</h3>
+        </div>
     );
 }
 

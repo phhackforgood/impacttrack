@@ -42,7 +42,7 @@ function FormPage() {
             }; 
             console.log(response)
             const data = await response.json();
-            // route.push('/');  
+            route.push('/');  
             console.log(data);
         } catch (err: any) { 
             setError(err.message);
