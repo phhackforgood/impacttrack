@@ -156,7 +156,7 @@ function FormPage() {
                     Submit
                 </button>
             </form>
-        </section>
+            </section>
         </div>
     )
 }

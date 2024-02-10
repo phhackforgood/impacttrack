@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const SideBar = () => {
     return (
-        <div className="fixed top-0 left-0 h-screen w-16 p-0 m-0 flex flex-col bg-white text-black shadow">
+        <div className="top-0 left-0 h-screen w-16 p-0 m-0 flex flex-col bg-white text-black shadow">
             <Divider />
             <Link href="/"><SideBarIcon icon={<IoHomeOutline size="28" />} text="Home" /></Link>
             <Link href="/form"><SideBarIcon icon={<BsPlus size="28" />} text="Submit Form" /></Link>
