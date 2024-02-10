@@ -1,14 +1,10 @@
 import db from "@/db"; 
 import { NextResponse } from "next/server";
 
-
-
-
 export async function GET(request: Request) { 
     try {
         const result = await db.getEventsForms();
         // return list of events with forms
-        console.log(result, 'result');
         const eventForms = result.map((event: any) => {
             return {
                 eventName: event.title,

@@ -13,8 +13,6 @@ export class DatabaseClient {
         this.client.autoCancellation(false);
     }
 
-    
-
     async authenticate(email: string, password: string) {
         try {
             const result = await this.client.collection("users").authWithPassword(email, password);
@@ -120,7 +118,6 @@ export class DatabaseClient {
         console.log(model);
         return this.client.getFileUrl(model, model.avatar);
     }
-
     
     async addFormtoEvent(eventId: string, formId: string) {
         const event = await this.client.collection("events").getOne(eventId);

@@ -14,7 +14,7 @@ export interface Form {
     id: string;
     text: string;
     hours: number;
-    date: string;
+    eventDate: string;
     event: string;
     image: string;
     user: User;
