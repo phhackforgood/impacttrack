@@ -23,10 +23,9 @@ export async function POST(request: Request, response: Response) {
             throw new Error("Not authenticated");
         } else {
             const result = await db.submitForm(text, new_hours, new_Date, eventId, image, user.id);
-            console.log('result:', result);
             const formId = result.id;
             const result2 = await db.addFormtoEvent(eventId, formId);
-            console.log('result2:', result2);
+            console.log(result2);
             return NextResponse.json(result2); 
         }  
     } catch (err: any) { 

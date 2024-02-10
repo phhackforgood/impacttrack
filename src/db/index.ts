@@ -81,15 +81,11 @@ export class DatabaseClient {
     }
 
     async getEventbyTitle(title: string) {
-        console.log('title: being called', title);
         const events = await this.client.collection("events").getFirstListItem(`title="${title}"`);
-        console.log('events:', events);
         return events;
     }
 
     async submitForm(text: string, hours: number, date: Date, eventId: string, img: File, userId: string) {
-        console.log('submitForm: being called');
-        console.log('img:', img);
         const data = {
             "user": userId,
             "eventDate": new Date(),
