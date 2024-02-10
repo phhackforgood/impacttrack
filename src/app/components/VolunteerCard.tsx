@@ -1,7 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
 import db from "@/db";
-import { RecordModel } from "pocketbase";
 
 interface VolunterCardProps {
     image: string;

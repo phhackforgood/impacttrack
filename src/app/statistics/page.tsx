@@ -84,7 +84,7 @@ const options = {
   };
   return (
     //<main className="flex flex-col flex justify-between items-center px-0 py-50 bg-gray-100">
-    <div className="flex-grow">
+    <div className="flex-grow min-w-full">
       <p><Line data={data} options={options} /></p>
     </div> 
     //</main>
