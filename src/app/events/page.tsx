@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VolunteerCard from "../components/VolunteerCard";
+// import { Progress, Typography } from "@material-tailwind/react";
 
 export default function EventPage() {
     const progVolunteers = 84;
@@ -19,15 +21,20 @@ export default function EventPage() {
                         <ProgressBar variant="warning" max={max} now={progPhotos} key={2} />
                         <ProgressBar variant="danger" max={max} now={progSmiles} key={3} />
                     </ProgressBar>
+
                 </div>    
             </div>
             <div className="flex flex-col items-center bg-white font-Dmsans w-3/5 rounded-xl mr-auto mb-3 mt-6">
                 <h2 className="text-xl font-semibold mr-auto mb-3 mx-8 mt-6">Volunteers</h2>
-                <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full mb-4"><ProgressBar variant="success" now={progVolunteers} label={`${progVolunteers}`} /></div>
+                {/* <Progress value={progVolunteers} placeholder={undefined} size="lg" color={"red"} /> */}
+                <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full mb-4"><ProgressBar variant="success" now={progVolunteers} label={`${progVolunteers}`} /></div> 
                 <h2 className="text-xl font-semibold mr-auto mb-3 mx-8 mt-6">Photos Uploaded</h2>
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full mb-4"><ProgressBar variant="warning" now={progPhotos} label={`${progPhotos}`} /></div>
                 <h2 className="text-xl font-semibold mr-auto mb-3 mx-8 mt-6">Smiles Recorded</h2>
                 <div className="text-sm font-light text-left text-gray-400 leading-2 text-wrap px-8 w-full mb-4"><ProgressBar variant="danger" now={progSmiles} label={`${progSmiles}`} /></div>
+
+                
+
             </div>
 
             <div className="mr-auto w-full mb-4">
