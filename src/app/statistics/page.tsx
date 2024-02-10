@@ -86,7 +86,7 @@ const options = {
     //<main className="flex flex-col flex justify-between items-center px-0 py-50 bg-gray-100">
     <div>
       <h1 className='font-Dmsans text-3xl font-semibold text-center mt-8'>Statistics</h1>
-      <div className=" bg-white m-6 rounded-xl shadow-md">
+      <div className=" bg-white m-6 rounded-xl shadow-lg">
         <p><Line data={data} options={options} /></p>
       </div> 
     </div>
